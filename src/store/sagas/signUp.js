@@ -2,7 +2,7 @@ import { call, put } from 'redux-saga/effects';
 import { actions as toastrActions } from 'react-redux-toastr';
 import { push } from 'connected-react-router';
 
-import api from '../../services/api';
+import api from '~/services/api';
 import { Creators } from '../ducks/signUp';
 
 export function* signUp({ name, email, password }) {

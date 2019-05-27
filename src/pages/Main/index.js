@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Redux from '../../store/redux';
+import Redux from '~/store/redux';
 
 import { Container } from './styles';
 

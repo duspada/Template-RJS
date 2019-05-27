@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Redux from '../../../store/redux';
+import Redux from '~/store/redux';
 
-import Button from '../../../styles/Button';
+import Button from '~/styles/Button';
 import { Container, SignForm } from '../styles';
 
 class SignUp extends Component {

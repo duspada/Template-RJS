@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-import alertType from '~/src/enums/alertType.enum';
+import alertType from '../enums/alertType.enum';
 import {
   alertText,
   alertDefault,
   alertError,
   alertWarning,
-} from '~src/styles/colors';
+} from '~/styles/colors';
 
 export const AlertWrapper = styled.div`
   margin-top: 20px;
