@@ -1,68 +1,128 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### Pré-requisitos:
 
-## Available Scripts
+- Versão mais recente do Mac OS
+- [Brew](https://brew.sh/index_pt-br)
+- Versão 8 do node.
+- Watchman
 
-In the project directory, you can run:
+Mais detalhes sobre a instalação das dependências no [guia do react native](https://facebook.github.io/react-native/docs/getting-started.html) na aba "Building Projects with Native Code".
 
-### `npm start`
+## :rocket: Setup & Run
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Antes de iniciar o desenvolvimento:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Faça fork do projeto
+Crie um novo remote referenciando o repositório original
+```sh
+git remote add <nome_do_remote> <seu fork>
+```
 
-### `npm test`
+Mude para a branch `develop`:
+```sh
+git checkout develop
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para começar o desenvolvimento, crie uma nova branch a partir da `develop`:
+```sh
+git checkout -b <nome_da_branch>
+```
 
-### `npm run build`
+Instale as dependências do yarn:
+```sh
+yarn install
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para rodar o projeto execute o comando:
+```sh
+yarn start
+```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+O projeto rodará na url: [http://localhost:3000/](http://localhost:3000/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Estrutura do Projeto
 
-### `npm run eject`
+#### services/
+Nesta pasta devem ficar as definições e funções relacionadas a camada de HTTP e utilizações de APIs REST.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### assets/
+Nesta pasta serão adicionadas as imagens, vetores, aúdios, etc. que serão compiladas com o aplicativo.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### base/
+Nesta pasta devem ficar os componentes e implementações (utils, helpers, etc) que são utilizados por toda aplicação.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### store/
+Nesta pasta devem ficar todas as definições e implementações relacionadas a gestão do estado global da aplicação.
+Na implementação dos redux/modules, recomenda-se a utilização do padrão [Ducks Modular Redux](https://github.com/erikras/ducks-modular-redux) para a organização.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### routes/
+Nesta pasta devem ficar arquivos referentes à navegação da aplicação. Basicamente, dentro dessa pasta ficam os arquivos que configuram e abstraem o roteamento/navegação da aplicação
 
-## Learn More
+#### pages/
+Nesta pasta devem ficar as telas do aplicativo.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## :recycle: Fluxo de Rebase
 
-### Code Splitting
+Dê commit ou stash das suas alterações e mude para a branch `develop`:
+```sh
+git checkout develop
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Atualize sua branch `develop` com o conteúdo do repositório original:
+```sh
+git pull <nome_do_remote> develop
+```
 
-### Analyzing the Bundle Size
+Volte para sua branch com as alterações:
+```sh
+git checkout <nome_da_branch>
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Dê rebase para aplicar as atualizações à sua branch:
+```sh
+git rebase teste_branch
+```
 
-### Making a Progressive Web App
+Resolva os conflitos e rode os testes para ter certeza de que nada foi quebrado:
+```sh
+yarn test
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Suba sua branch para seu remote (por padrão `origin`)
+```sh
+git push origin <nome_da_branch>
+```
 
-### Advanced Configuration
+No GitLab abra um merge request da sua branch para a branch `develop` do repositório original.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Git
+Para nomes de branch o padrão sugerido é:
+tipo/nome-da-atividade
+Exemplo: Feature/Create-Login-Screen
 
-### Deployment
+Onde tipo deve ser relacionado ao que aquela branch busca resolver.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Os tipos que estamos utilizando são:
+- feat (será implementada uma nova funcionalidade)
+- fix (será implementada uma correção para resolver um problema existente)
+- refactor (será realizado algum refactor em parte do código que já funciona)
+- chore (será implementa alguma melhoria de infraestrutura ou soluções mais gerais que não são features)
+- test (será desenvolvido algum novo cenário de teste para a aplicação ou atualização de testes existentes)
+- docs (será feita alguma mudança na documentação)
 
-### `npm run build` fails to minify
+Para as mensagens de commit também deve-se seguir a nomenclatura:
+ tipo(nome-da-atividade): mensagem
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## :heavy_check_mark:  Rodar os testes:
+
+```sh
+yarn test
+```
+
+## Built With
+- [React](https://reactjs.org/docs/getting-started.html)
+- [Redux](https://redux.js.org/)
+- [Formik](https://github.com/jaredpalmer/formik)
+- [Styled Components](https://www.styled-components.com/docs/basics#getting-started)
+- [Jest](https://jestjs.io/docs/en/getting-started)
+
