@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import {
+  string, func, shape, bool, node, oneOfType,
+} from 'prop-types';
 
 export default class ClickOutsideListener extends Component {
   constructor(props) {
@@ -17,34 +19,36 @@ export default class ClickOutsideListener extends Component {
   }
 
   handleClick = (event) => {
-    const trigger = this.props.triggerRef.current;
+    const { triggerRef, isListening, handleClickOutside } = this.props;
+    const trigger = triggerRef.current;
     const wrapper = this.wrapperRef.current;
 
     if (
-      this.props.isListening
+      isListening
       && (!wrapper || !wrapper.contains(event.target))
       && (!trigger || !trigger.contains(event.target))
     ) {
-      this.props.handleClickOutside(event);
+      handleClickOutside(event);
     }
   };
 
   render() {
+    const { id, children } = this.props;
     return (
-      <div ref={this.wrapperRef} id={this.props.id}>
-        {this.props.children}
+      <div ref={this.wrapperRef} id={id}>
+        {children}
       </div>
     );
   }
 }
 
 ClickOutsideListener.propTypes = {
-  id: PropTypes.string.isRequired,
-  triggerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+  id: string.isRequired,
+  triggerRef: oneOfType([func, shape()])
     .isRequired,
-  isListening: PropTypes.bool,
-  handleClickOutside: PropTypes.func,
-  children: PropTypes.node,
+  isListening: bool,
+  handleClickOutside: func,
+  children: node,
 };
 
 ClickOutsideListener.defaultProps = {

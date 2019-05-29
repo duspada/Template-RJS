@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { func } from 'prop-types';
 
 import Redux from '~/store/redux';
 
@@ -8,7 +8,7 @@ import { Container, SignForm } from '../styles';
 
 class SignIn extends Component {
   static propTypes = {
-    getAuthRequest: PropTypes.func.isRequired,
+    getAuthRequest: func.isRequired,
   };
 
   state = {
@@ -17,7 +17,6 @@ class SignIn extends Component {
   };
 
   handleSubmit = (e) => {
-    console.tron.log(this.props)
     e.preventDefault();
 
     const { email, password } = this.state;

@@ -12,7 +12,7 @@ export function* getAuth(credentials) {
       password: credentials.payload.password,
     });
     if (yield response.status === 200) {
-      yield put(push('/')); //go to some page
+      yield put(push('/')); // go to some page
       // or do something, like put the token on the localstorage
     } else {
       yield put(
