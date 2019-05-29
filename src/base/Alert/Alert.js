@@ -1,5 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {
+  string, bool, node,
+} from 'prop-types';
 
 import { AlertWrapper, AlertContent } from './Alert.styles';
 
@@ -14,10 +16,10 @@ const Alert = ({
 export default Alert;
 
 Alert.propTypes = {
-  id: PropTypes.string.isRequired,
-  children: PropTypes.node,
-  type: PropTypes.string,
-  show: PropTypes.bool,
+  id: string.isRequired,
+  children: node,
+  type: string,
+  show: bool,
 };
 
 Alert.defaultProps = {
